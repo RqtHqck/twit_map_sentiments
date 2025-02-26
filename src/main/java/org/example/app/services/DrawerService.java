@@ -1,51 +1,61 @@
 package org.example.app.services;
-
-import org.example.app.entities.Point;
+import org.example.app.entities.State;
 import org.example.app.entities.Polygon;
-import org.openstreetmap.gui.jmapviewer.JMapViewer;
-//import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
-//import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
-//import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygonImpl;
+import org.example.app.entities.Point;
 
-//import javafx.scene.layout.StackPane;
-
-import java.util.ArrayList;
+import java.awt.*;
+import java.awt.geom.GeneralPath;
+import javax.swing.*;
 import java.util.List;
 
 
 public class DrawerService {
-    private JMapViewer mapViewer;
 
-    public DrawerService() {
-        mapViewer = new JMapViewer(); // Инициализация карты
+    private static final double SCALE = 6.0; // Коэффициент масштабирования
+    private static final int OFFSET_X = 0;
+    private static final int OFFSET_Y = 0;
+
+    // Метод для рисования одного полигона
+    private void drawPolygon(Graphics2D g2d, List<Point> points) {
+        if (points == null || points.isEmpty()) {
+            return;
+        }
+
+        GeneralPath path = new GeneralPath();
+
+        // Преобразование первой точки
+        int startX = (int) ((points.get(0).getLongitude() + 180) * SCALE) - OFFSET_X;
+        int startY = (int) ((90 - points.get(0).getLatitude()) * SCALE) - OFFSET_Y;
+
+        path.moveTo(startX, startY);
+
+        // Преобразуем остальные точки
+        for (int i = 1; i < points.size(); i++) {
+            int x = (int) ((points.get(i).getLongitude() + 180) * SCALE) - OFFSET_X;
+            int y = (int) ((90 - points.get(i).getLatitude()) * SCALE) - OFFSET_Y;
+
+            path.lineTo(x, y);
+        }
+
+        path.closePath();
+
+        g2d.setColor(Color.BLUE);
+        g2d.fill(path);
+        g2d.setColor(Color.BLACK);
+        g2d.draw(path);
     }
-//
-//    public StackPane getMapPane() {
-//        StackPane stackPane = new StackPane();
-//        stackPane.getChildren().add(mapViewer);
-//        return stackPane;
-//    }
-//
-//    public void drawPolygon(Polygon polygon) {
-//        List<MapMarker> polygonPoints = new ArrayList<>();
-//
-//        for (Point point : polygon.getPoints()) {
-//            polygonPoints.add(new org.openstreetmap.gui.jmapviewer.MapMarkerDot(point.getLatitude(), point.getLongitude()));
-//        }
-//
-//        MapPolygon mapPolygon = new MapPolygonImpl(polygonPoints);
-//        mapViewer.addMapPolygon(mapPolygon);
-//    }
-//
-//    public void drawStatePolygons(List<Polygon> polygons) {
-//        for (Polygon polygon : polygons) {
-//            drawPolygon(polygon); // Отрисовываем каждый полигон
-//        }
-//    }
-//
-//    public void clearMap() {
-//        mapViewer.removeAllMapMarkers();  // Очистка карты
-//        mapViewer.removeAllMapPolygons(); // Очистка полигона
-//    }
+
+
+    // Метод для рисования всех полигонов
+    public void drawStates(Graphics g, List<State> states) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setStroke(new BasicStroke(1)); // Толщина линии
+
+        for (State state : states) {
+            for (Polygon polygon : state.getPolygons()) {
+                drawPolygon(g2d, polygon.getPoints());
+            }
+        }
+    }
 
 }

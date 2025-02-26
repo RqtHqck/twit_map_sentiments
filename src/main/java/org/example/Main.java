@@ -2,10 +2,13 @@ package org.example;
 
 //import org.example.app.service.StateService;
 //import org.example.app.service.SentimentService;
+import javax.swing.*;
 
 import org.example.app.entities.State;
+import org.example.app.services.DrawerService;
 import org.example.app.utils.StateParser;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -30,17 +33,31 @@ public class Main {
             for (State state : states) {
                 System.out.println(state);
             }
+// Создаем главное окно
+            JFrame frame = new JFrame("State Map Drawer");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(800, 600);
 
+            // Создаем панель отрисовки
+            JPanel panel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    System.out.println("paintComponent is called"); // Лог вызова метода
+                    DrawerService drawerService = new DrawerService();
+                    drawerService.drawStates(g, states);  // Рисуем полигоны
+                }
+            };
 
+            panel.setPreferredSize(new Dimension(800, 600));
+            frame.add(panel);
+            frame.pack();  // Устанавливаем корректные размеры
+            frame.setVisible(true);
 
-            // Создаем Drawer и рисуем полигоны
-            Drawer drawer = new Drawer();
-            drawer.drawStatePolygons(states.get(0).getPolygons());
+            // Принудительно вызываем отрисовку
+            panel.revalidate();
+            panel.repaint();
 
-            Scene scene = new Scene(drawer.getMapPane(), 800, 600);
-            primaryStage.setTitle("State Map");
-            primaryStage.setScene(scene);
-            primaryStage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
