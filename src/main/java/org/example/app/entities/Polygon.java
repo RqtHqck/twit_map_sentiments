@@ -19,8 +19,7 @@ public class Polygon {
 
     @Override
     public String toString() {
-        return "Polygon{" +
-                "points=" + points +
+        return "Polygon{" + points +
                 '}';
     }
 }
