@@ -8,10 +8,11 @@ import org.example.app.services.SentimentService;
 import org.example.app.services.StateService;
 import org.example.app.utils.*;
 
-import java.awt.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SplittableRandom;
 
 
 public class Processor {
@@ -20,10 +21,16 @@ public class Processor {
         readData();
         // Evaluate twits by sentiments, add sentiment value into field in Twit.
         List<Twit> evaluatedTwits = evaluateTwitsWithSentiments();
-//        for (Twit twit : evaluatedTwits) {
-//            System.out.println(twit);
-//        }
+        for (Twit twit : evaluatedTwits) {
+            System.out.println(twit);
+        }
 
+        stateSentimentAssign(evaluatedTwits);
+        for (State state : ParsedData.getStates()) {
+            System.out.println(state);
+        }
+
+//        System.out.println(state);
     }
 
 
@@ -54,16 +61,22 @@ public class Processor {
     }
 
 
-    public static void uniteStatePolygons() {
+    public static void stateSentimentAssign(List<Twit> twists) {
         List<State> states = ParsedData.getStates();
-//        List<S> evaluatedTwits = new ArrayList<>();
+        List<Twit> evaluatedTwits = new ArrayList<>();
 
-        for (State state : states) {
-            List<Polygon> polygons = state.getPolygons();
-//            Polygon unitedPolygon = StateService.findBoundingPolygon(polygons);
+
+        for (Twit twit : twists) {
+            for (State state: states) {
+//                System.out.println(state);
+                if (StateService.containsTwit(state, twit)) {  // Проверяем, принадлежит ли твит штату
+                    state.setAverageSentiment(twit.getSentimentScore());
+//                    System.out.println(state);
+                }
+
+            }
         }
     }
-
 }
 
 

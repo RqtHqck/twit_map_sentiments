@@ -18,7 +18,7 @@ public class StateParser {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-
+            // СОздаём нодовое дерево JSON
             JsonNode rootNode = objectMapper.readTree(inputJson);
 
             Iterator<String> stateNames = rootNode.fieldNames();
@@ -99,6 +99,6 @@ public class StateParser {
         // Создаем объект Point
         double longitude = pointNode.get(0).asDouble();
         double latitude = pointNode.get(1).asDouble();
-        return new Point(longitude, latitude);
+        return new Point(latitude, longitude);
     }
 }

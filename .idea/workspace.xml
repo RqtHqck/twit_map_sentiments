@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3e39102-09ff-4df7-9821-e5309ce6dff9" name="Changes" comment="added: Processor for run program">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/WordParser.java" afterDir="false" />
+    <list default="true" id="e3e39102-09ff-4df7-9821-e5309ce6dff9" name="Changes" comment="added: added sentiment to twit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Polygon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/entities/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/entities/State.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Twit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Twit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/process/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/process/Processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/SentimentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/SentimentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/TwitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/TwitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/utils/ParsedData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/ParsedData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/utils/SentimentsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/SentimentsParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/utils/TwitParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/TwitParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/utils/StateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/StateParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740729884518</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added: added sentiment to twit">
+      <option name="closed" value="true" />
+      <created>1740746610341</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740746610341</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,6 +137,7 @@
     <MESSAGE value="updated: took out read file code into utils FileReaderUtil.&#10;added: csvReader. Parser setiments, Sentiments entity" />
     <MESSAGE value="added: twits parser" />
     <MESSAGE value="added: Processor for run program" />
-    <option name="LAST_COMMIT_MESSAGE" value="added: Processor for run program" />
+    <MESSAGE value="added: added sentiment to twit" />
+    <option name="LAST_COMMIT_MESSAGE" value="added: added sentiment to twit" />
   </component>
 </project>

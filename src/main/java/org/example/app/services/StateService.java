@@ -1,16 +1,21 @@
-//package org.example.app.service;
-//import org.example.app.model.State;
-//
-//import java.util.List;
-//
-//
-//public class StateService {
-//    List<State> loadStates(String filePath) {
-//        // загрузка данных о штатах из файла
-//    }
-//
-//
-//    String findClosestState(double latitude, double longitude, List<State> states) {
-//        // поиск ближайшего штата для твита
-//    }
-//}
+package org.example.app.services;
+
+import org.example.app.entities.Point;
+import org.example.app.entities.State;
+import org.example.app.entities.Twit;
+
+
+import org.example.app.entities.Polygon;
+
+import java.util.List;
+
+public class StateService {
+    public static boolean containsTwit(State state, Twit twit) {
+        for (Polygon polygon : state.getPolygons()) {
+            if (PolygonService.isPointInsidePolygon(polygon, twit.getLocation())) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
