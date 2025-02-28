@@ -18,6 +18,22 @@ public class Polygon {
         this.points = points;
     }
 
+
+    public Point getCentroid() {
+        double centroidLat = 0;
+        double centroidLon = 0;
+        int n = points.size();
+
+        for (Point point : points) {
+            centroidLat += point.getLatitude();
+            centroidLon += point.getLongitude();
+        }
+
+        return new Point(centroidLat / n, centroidLon / n);
+    }
+
+
+
     @Override
     public String toString() {
         return "Polygon{" + points +

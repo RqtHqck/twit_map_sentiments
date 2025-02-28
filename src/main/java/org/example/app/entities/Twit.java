@@ -25,7 +25,7 @@ public class Twit {
         return message;
     }
 
-    public double getSentimentScore() {
+    public double getSentiment() {
         return sentimentValue;
     }
 
@@ -40,7 +40,7 @@ public class Twit {
                 "location=" + getLocation() +
                 ", " + getDate() + '\'' +
                 " | " + getMessage() + '\'' +
-                ", " + getSentimentScore() + '\'' +
+                ", " + getSentiment() + '\'' +
                 '}';
     }
 }

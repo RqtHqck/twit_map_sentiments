@@ -1,6 +1,5 @@
 package org.example.app.process;
 
-import org.example.app.entities.Polygon;
 import org.example.app.entities.Sentiment;
 import org.example.app.entities.State;
 import org.example.app.entities.Twit;
@@ -8,11 +7,11 @@ import org.example.app.services.SentimentService;
 import org.example.app.services.StateService;
 import org.example.app.utils.*;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.SplittableRandom;
+import java.util.Map;
 
 
 public class Processor {
@@ -21,16 +20,30 @@ public class Processor {
         readData();
         // Evaluate twits by sentiments, add sentiment value into field in Twit.
         List<Twit> evaluatedTwits = evaluateTwitsWithSentiments();
-        for (Twit twit : evaluatedTwits) {
-            System.out.println(twit);
+//        for (Twit twit : evaluatedTwits) {
+//            System.out.println(twit);
+//        }
+
+        // Group twits by state by stateName
+        Map<String, List<Twit>> stateTwits = group_twits_by_state(evaluatedTwits);
+        for (Map.Entry<String, List<Twit>> entry : stateTwits.entrySet()) {
+            System.out.println("Штат: " + entry.getKey());
+            for (Twit twit : entry.getValue()) {
+                System.out.println("  - " + twit);
+            }
         }
 
-        stateSentimentAssign(evaluatedTwits);
-        for (State state : ParsedData.getStates()) {
-            System.out.println(state);
+        // Calculate state average sentiments
+        Map<String, Double> sentiments = calculate_average_sentiments(stateTwits);
+        for (Map.Entry<String, Double> entry : sentiments.entrySet()) {
+            System.out.println("Штат: " + entry.getKey() + ", Сумма настроений: " + entry.getValue());
         }
 
-//        System.out.println(state);
+
+
+//        for (State state : ParsedData.getStates()) {
+//            System.out.println(state);
+//        }
     }
 
 
@@ -61,23 +74,62 @@ public class Processor {
     }
 
 
-    public static void stateSentimentAssign(List<Twit> twists) {
+    public static Map<String, List<Twit>> group_twits_by_state(List<Twit> twits) {
         List<State> states = ParsedData.getStates();
-        List<Twit> evaluatedTwits = new ArrayList<>();
+        Map<String, List<Twit>> stateTwits = new HashMap<>();
 
+        for (Twit twit : twits) {
+            String assignedState = null;
+            double minDistance = Double.MAX_VALUE;
 
-        for (Twit twit : twists) {
-            for (State state: states) {
-//                System.out.println(state);
-                if (StateService.containsTwit(state, twit)) {  // Проверяем, принадлежит ли твит штату
-                    state.setAverageSentiment(twit.getSentimentScore());
-//                    System.out.println(state);
+            // 1. Сначала проверяем, входит ли твит в один из штатов
+            for (State state : states) {
+                if (StateService.containsTwit(state, twit)) {
+                    assignedState = state.getName();
+                    break; // Если нашли штат, дальше не проверяем
                 }
-
             }
+
+            // 2. Если не нашли, ищем ближайший штат
+            if (assignedState == null) {
+                for (State state : states) {
+                    double distance = GeoUtil.distance(twit.getLocation(), state.getCentroid());
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        assignedState = state.getName(); // Запоминаем ближайший штат
+                    }
+                }
+            }
+
+            // Добавляем твит в соответствующий список
+            stateTwits.computeIfAbsent(assignedState, k -> new ArrayList<>()).add(twit);
         }
+
+        return stateTwits;
     }
+
+    public static Map<String, Double> calculate_average_sentiments(Map<String, List<Twit>> stateTwits) {
+        Map<String, Double> statesSentiments = new HashMap<>();
+
+        for (Map.Entry<String, List<Twit>> entry : stateTwits.entrySet()) {
+            String state = entry.getKey();
+            List<Twit> twits = entry.getValue();
+
+            double totalSentiment = 0;
+            for (Twit twit : twits) {
+                totalSentiment += twit.getSentiment();
+            }
+
+            statesSentiments.put(state, totalSentiment);
+        }
+
+        return statesSentiments;
+    }
+
+
 }
+
+
 
 
 //        // Создаем главное окно
