@@ -6,10 +6,12 @@ import javax.swing.*;
 
 import org.example.app.entities.Sentiment;
 import org.example.app.entities.State;
+import org.example.app.entities.Twit;
 import org.example.app.services.DrawerService;
 import org.example.app.utils.FileReaderUtil;
 import org.example.app.utils.SentimentsParser;
 import org.example.app.utils.StateParser;
+import org.example.app.utils.TwitParser;
 
 import java.awt.*;
 import java.io.IOException;
@@ -23,13 +25,16 @@ public class Main {
             // Read states
             List<State> states = StateParser.parseStates(FileReaderUtil.readJsonFile("states.json"));
             List<Sentiment> sentiments = SentimentsParser.parse(FileReaderUtil.readCsvFile("sentiments.csv", ","));
+            List<Twit> twits = TwitParser.parse(FileReaderUtil.readTxtFile("cali_tweets2014.txt"));
 
-
-            for (Sentiment s : sentiments) {
-                System.out.println(s);
+            for (Twit twit : twits) {
+                System.out.println(twit);
             }
 
-//            // Выводим на экран
+//            for (Sentiment s : sentiments) {
+//                System.out.println(s);
+//            }
+//
 //            for (State state : states) {
 //                System.out.println(state);
 //            }

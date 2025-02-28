@@ -1,6 +1,7 @@
 package org.example.app.utils;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,5 +39,24 @@ public class FileReaderUtil {
     }
 
 
+    public static List<String> readTxtFile(String fileName) throws IOException {
+        List<String> lines = new ArrayList<>();
+        ClassLoader classLoader = FileReaderUtil.class.getClassLoader();
+        URL resource = classLoader.getResource(fileName);
 
+        if (resource == null) {
+            throw new FileNotFoundException("Файл не найден: " + fileName);
+        }
+
+        File file = new File(resource.getFile());
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+            }
+        }
+
+        return lines;
+    }
 }
