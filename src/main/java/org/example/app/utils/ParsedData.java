@@ -7,51 +7,55 @@ import org.example.app.entities.Twit;
 import java.util.List;
 
 public class ParsedData {
-    private List<State> states;
-    private List<Twit> twits;
-    private List<Sentiment> sentiments;
 
-    public ParsedData(List<State> states, List<Twit> twits, List<Sentiment> sentiments) {
-        this.states = states;
-        this.twits = twits;
-        this.sentiments = sentiments;
+    // Статические поля
+    private static List<State> states;
+    private static List<Twit> twits;
+    private static List<Sentiment> sentiments;
+
+    // Статический конструктор для инициализации данных
+    public static void initializeData(List<State> states, List<Twit> twits, List<Sentiment> sentiments) {
+        ParsedData.states = states;
+        ParsedData.twits = twits;
+        ParsedData.sentiments = sentiments;
     }
 
-    public List<State> getStates() {
+    // Статические методы для доступа к данным
+    public static List<State> getStates() {
         return states;
     }
 
-    public List<Twit> getTwits() {
+    public static List<Twit> getTwits() {
         return twits;
     }
 
-    public List<Sentiment> getSentiments() {
+    public static List<Sentiment> getSentiments() {
         return sentiments;
     }
 
-    // Метод для вывода всех твитов в консоль
-    public void printTwits() {
+    // Статический метод для вывода всех твитов в консоль
+    public static void printTwits() {
         for (Twit twit : twits) {
             System.out.println(twit);
         }
     }
 
-    // Метод для вывода всех сентиментов в консоль
-    public void printSentiments() {
+    // Статический метод для вывода всех сентиментов в консоль
+    public static void printSentiments() {
         for (Sentiment sentiment : sentiments) {
             System.out.println(sentiment);
         }
     }
 
-    // Метод для вывода всех состояний в консоль
-    public void printStates() {
+    // Статический метод для вывода всех состояний в консоль
+    public static void printStates() {
         for (State state : states) {
             System.out.println(state);
         }
     }
 
-    // Метод для вывода всех данных (твиты, сентименты, состояния)
-    public void printAllData() {
+    // Статический метод для вывода всех данных (твиты, сентименты, состояния)
+    public static void printAllData() {
         printTwits();
         printSentiments();
         printStates();

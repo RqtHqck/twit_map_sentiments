@@ -4,9 +4,11 @@ import java.util.List;
 
 public class Polygon {
     private List<Point> points;
+    private double averageSentiment;
 
     public Polygon(List<Point> points) {
         this.points = points;
+        this.averageSentiment = 0.0;
     }
 
     public List<Point> getPoints() {

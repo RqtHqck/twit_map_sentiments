@@ -39,7 +39,6 @@ public class TwitParser {
             }
         }
 
-        System.out.println("Парсер завершен. Количество твитов: " + twits.size());
         return twits;
     }
 }
