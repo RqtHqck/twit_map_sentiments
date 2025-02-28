@@ -7,6 +7,7 @@ import javax.swing.*;
 import org.example.app.entities.Sentiment;
 import org.example.app.entities.State;
 import org.example.app.entities.Twit;
+import org.example.app.process.Processor;
 import org.example.app.services.DrawerService;
 import org.example.app.utils.FileReaderUtil;
 import org.example.app.utils.SentimentsParser;
@@ -22,49 +23,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         try {
-            // Read states
-            List<State> states = StateParser.parseStates(FileReaderUtil.readJsonFile("states.json"));
-            List<Sentiment> sentiments = SentimentsParser.parse(FileReaderUtil.readCsvFile("sentiments.csv", ","));
-            List<Twit> twits = TwitParser.parse(FileReaderUtil.readTxtFile("cali_tweets2014.txt"));
-
-            for (Twit twit : twits) {
-                System.out.println(twit);
-            }
-
-//            for (Sentiment s : sentiments) {
-//                System.out.println(s);
-//            }
-//
-//            for (State state : states) {
-//                System.out.println(state);
-//            }
-//
-//            // Создаем главное окно
-//            JFrame frame = new JFrame("State Map Drawer");
-//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            frame.setSize(800, 600);
-//
-//            // Создаем панель отрисовки
-//            JPanel panel = new JPanel() {
-//                @Override
-//                protected void paintComponent(Graphics g) {
-//                    super.paintComponent(g);
-//                    DrawerService drawerService = new DrawerService();
-//                    drawerService.drawStates(g, states);  // Рисуем полигоны
-//                }
-//            };
-//
-//            panel.setPreferredSize(new Dimension(800, 600));
-//            frame.add(panel);
-//            frame.pack();  // Устанавливаем корректные размеры
-//            frame.setVisible(true);
-//
-//            // Принудительно вызываем отрисовку
-//            panel.revalidate();
-//            panel.repaint();
-
-        }
-        catch (IOException e) {
+            Processor.runProgram();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
