@@ -11,6 +11,7 @@ import java.util.List;
 
 public class StateService {
     public static boolean containsTwit(State state, Twit twit) {
+        // Говорит содержит ли штат этот твит. Проверяет принадлежит ли полигону штата location (Point) твита
         for (Polygon polygon : state.getPolygons()) {
             if (PolygonService.isPointInsidePolygon(polygon, twit.getLocation())) {
                 return true;

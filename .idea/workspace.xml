@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e3e39102-09ff-4df7-9821-e5309ce6dff9" name="Changes" comment="added: added twit location defining by the certain state.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/GeoUtil.java" afterDir="false" />
+    <list default="true" id="e3e39102-09ff-4df7-9821-e5309ce6dff9" name="Changes" comment="updated: function return boolean because of if check. It's easier to do like that.&#10;added: calculate_average_sentiments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/entities/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/entities/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Twit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/entities/Twit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/process/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/process/Processor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/DrawerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/DrawerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/PolygonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/PolygonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/SentimentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/SentimentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/TwitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/TwitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/utils/Algoritmix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/Algoritmix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740761069369</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updated: function return boolean because of if check. It's easier to do like that.&#10;added: calculate_average_sentiments">
+      <option name="closed" value="true" />
+      <created>1740766557189</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740766557189</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +155,7 @@
     <MESSAGE value="added: Processor for run program" />
     <MESSAGE value="added: added sentiment to twit" />
     <MESSAGE value="added: added twit location defining by the certain state." />
-    <option name="LAST_COMMIT_MESSAGE" value="added: added twit location defining by the certain state." />
+    <MESSAGE value="updated: function return boolean because of if check. It's easier to do like that.&#10;added: calculate_average_sentiments" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated: function return boolean because of if check. It's easier to do like that.&#10;added: calculate_average_sentiments" />
   </component>
 </project>

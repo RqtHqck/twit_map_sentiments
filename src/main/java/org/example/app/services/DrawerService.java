@@ -24,8 +24,8 @@ public class DrawerService {
         GeneralPath path = new GeneralPath();
 
         // Преобразование первой точки
-        int startX = (int) ((points.get(0).getLongitude() + 180) * SCALE) - OFFSET_X;
-        int startY = (int) ((90 - points.get(0).getLatitude()) * SCALE) - OFFSET_Y;
+        int startX = (int) ((points.getFirst().getLongitude() + 180) * SCALE) - OFFSET_X;
+        int startY = (int) ((90 - points.getFirst().getLatitude()) * SCALE) - OFFSET_Y;
 
         path.moveTo(startX, startY);
 

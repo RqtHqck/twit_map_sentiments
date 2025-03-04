@@ -25,25 +25,24 @@ public class Processor {
 //        }
 
         // Group twits by state by stateName
-        Map<String, List<Twit>> stateTwits = group_twits_by_state(evaluatedTwits);
-        for (Map.Entry<String, List<Twit>> entry : stateTwits.entrySet()) {
-            System.out.println("Штат: " + entry.getKey());
-            for (Twit twit : entry.getValue()) {
-                System.out.println("  - " + twit);
-            }
-        }
+        Map<State, List<Twit>> stateTwits = group_twits_by_state(evaluatedTwits);
+//        for (Map.Entry<String, List<Twit>> entry : stateTwits.entrySet()) {
+//            System.out.println("Штат: " + entry.getKey());
+//            for (Twit twit : entry.getValue()) {
+//                System.out.println("  - " + twit);
+//            }
+//        }
 
         // Calculate state average sentiments
-        Map<String, Double> sentiments = calculate_average_sentiments(stateTwits);
-        for (Map.Entry<String, Double> entry : sentiments.entrySet()) {
-            System.out.println("Штат: " + entry.getKey() + ", Сумма настроений: " + entry.getValue());
+        Map<State, Double> sentiments = calculate_average_sentiments(stateTwits);
+        for (Map.Entry<State, Double> entry : sentiments.entrySet()) {
+            System.out.println("Штат: " + entry.getKey().getName() + ", Сумма настроений: " + entry.getValue());
         }
 
+        // Категоризация настроения по типам
+        Map<State, String> categorizedStates = SentimentService.categorizeStates(sentiments);
 
 
-//        for (State state : ParsedData.getStates()) {
-//            System.out.println(state);
-//        }
     }
 
 
@@ -74,18 +73,18 @@ public class Processor {
     }
 
 
-    public static Map<String, List<Twit>> group_twits_by_state(List<Twit> twits) {
+    public static Map<State, List<Twit>> group_twits_by_state(List<Twit> twits) {
         List<State> states = ParsedData.getStates();
-        Map<String, List<Twit>> stateTwits = new HashMap<>();
+        Map<State, List<Twit>> stateTwits = new HashMap<>();
 
         for (Twit twit : twits) {
-            String assignedState = null;
+            State assignedState = null; // Должен быть объектом типа State
             double minDistance = Double.MAX_VALUE;
 
             // 1. Сначала проверяем, входит ли твит в один из штатов
             for (State state : states) {
                 if (StateService.containsTwit(state, twit)) {
-                    assignedState = state.getName();
+                    assignedState = state;
                     break; // Если нашли штат, дальше не проверяем
                 }
             }
@@ -96,7 +95,7 @@ public class Processor {
                     double distance = GeoUtil.distance(twit.getLocation(), state.getCentroid());
                     if (distance < minDistance) {
                         minDistance = distance;
-                        assignedState = state.getName(); // Запоминаем ближайший штат
+                        assignedState = state; // Запоминаем ближайший штат
                     }
                 }
             }
@@ -108,11 +107,11 @@ public class Processor {
         return stateTwits;
     }
 
-    public static Map<String, Double> calculate_average_sentiments(Map<String, List<Twit>> stateTwits) {
-        Map<String, Double> statesSentiments = new HashMap<>();
+    public static Map<State, Double> calculate_average_sentiments(Map<State, List<Twit>> stateTwits) {
+        Map<State, Double> statesSentiments = new HashMap<>();
 
-        for (Map.Entry<String, List<Twit>> entry : stateTwits.entrySet()) {
-            String state = entry.getKey();
+        for (Map.Entry<State, List<Twit>> entry : stateTwits.entrySet()) {
+            State state = entry.getKey();
             List<Twit> twits = entry.getValue();
 
             double totalSentiment = 0;
@@ -125,33 +124,4 @@ public class Processor {
 
         return statesSentiments;
     }
-
-
 }
-
-
-
-
-//        // Создаем главное окно
-//        JFrame frame = new JFrame("State Map Drawer");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(800, 600);
-//
-//        // Создаем панель отрисовки
-//        JPanel panel = new JPanel() {
-//            @Override
-//            protected void paintComponent(Graphics g) {
-//                super.paintComponent(g);
-//                DrawerService drawerService = new DrawerService();
-//                drawerService.drawStates(g, states);  // Рисуем полигоны
-//            }
-//        };
-//
-//        panel.setPreferredSize(new Dimension(800, 600));
-//        frame.add(panel);
-//        frame.pack();  // Устанавливаем корректные размеры
-//        frame.setVisible(true);
-//
-//        // Принудительно вызываем отрисовку
-//        panel.revalidate();
-//        panel.repaint()

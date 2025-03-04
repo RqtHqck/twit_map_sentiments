@@ -4,6 +4,7 @@ import org.example.app.entities.Point;
 
 public class Algoritmix {
     public static boolean rayIntersectsSegment(Point p, Point a, Point b) {
+        // Определяет куда падает точка. Перебирает точки из Polygon и сравнивает их положения
         if (a.getLatitude() > b.getLatitude()) { // Упорядочим точки
             Point temp = a;
             a = b;

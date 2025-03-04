@@ -9,6 +9,7 @@ import java.util.List;
 
 public class PolygonService {
     public static boolean isPointInsidePolygon(Polygon polygon, Point point) {
+        // Говорит находится ли внутри полигона точка
         List<Point> points = polygon.getPoints();
         int count = 0;
         int n = points.size();
