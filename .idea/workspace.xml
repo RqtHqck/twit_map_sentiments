@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3e39102-09ff-4df7-9821-e5309ce6dff9" name="Changes" comment="updated: function return boolean because of if check. It's easier to do like that.&#10;added: calculate_average_sentiments">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateMapDrawer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/process/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/process/Processor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/DrawerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/DrawerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/PolygonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/PolygonService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/SentimentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/SentimentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/StateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/services/TwitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/services/TwitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/app/utils/Algoritmix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/app/utils/Algoritmix.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,19 +35,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rqthqck/Coding/Java/twit_project/twitter&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/rqthqck/Coding/Java/twit_project/twitter",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -10,6 +10,7 @@ import org.example.app.utils.WordParser;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,13 +50,13 @@ public class SentimentService {
     }
 
     // Метод для категоризации настроений
-    public static Map<State, String> categorizeStates(Map<State, Double> sentiments) {
+    public static Map<State, String> categorizeStates(Map<State, Optional<Double>> sentiments) {
         Map<State, String> categories = new HashMap<>();
 
         // Определение категорий и цветов
-        for (Map.Entry<State, Double> entry : sentiments.entrySet()) {
+        for (Map.Entry<State, Optional<Double>> entry : sentiments.entrySet()) {
             State state = entry.getKey();
-            double sentimentValue = entry.getValue();
+            Optional<Double> sentimentValue = entry.getValue();
             String color = getColor(sentimentValue);
             categories.put(state, color);
         }
@@ -63,34 +64,39 @@ public class SentimentService {
         return categories;
     }
 
+    private static String getColor(Optional<Double> value) {
+        // Если значение не присутствует в Optional, возвращаем цвет по умолчанию
+        if (value.isEmpty()) {
+            return "#808080"; // Цвет по умолчанию (например, серый)
+        }
 
-    private static String getColor(double value) {
-        // Получнеие цвета в зависимости от значения настроения
-        if (value == 0.0) {
+        double sentimentValue = value.get();
+
+        // Если значение 0.0 (нейтральное настроение)
+        if (sentimentValue == 0.0) {
             return "#FFFFFF"; // Белый для нейтральных настроений
         }
 
-        // Если значение больше 1, то используем яркий желтый
-        if (value > 1) {
+        // Если значение больше 1.0, то используем яркий желтый
+        if (sentimentValue > 1) {
             return "#FFFF00"; // Яркий желтый для "очень позитивно"
         }
 
-        // Если значение меньше -1, то используем яркий синий
-        if (value < -1) {
+        // Если значение меньше -1.0, то используем яркий синий
+        if (sentimentValue < -1) {
             return "#0000FF"; // Яркий синий для "очень негативно"
         }
 
         // Для значений в пределах от -1 до 1
         // Положительные значения (от 0 до 1) — желтый, где более яркое — ближе к 1
-        if (value > 0) {
-            int intensity = (int) (255 - 255 * value); // Уменьшаем яркость, чем меньше значение
+        if (sentimentValue > 0) {
+            int intensity = (int) (255 - 255 * sentimentValue); // Уменьшаем яркость, чем меньше значение
             return String.format("#%02X%02X00", intensity, intensity); // Желтый оттенок
         }
 
         // Отрицательные значения (от -1 до 0) — синий, где более яркое — ближе к -1
-        int intensity = (int) (255 - 255 * Math.abs(value)); // Уменьшаем яркость, чем меньше значение
+        int intensity = (int) (255 - 255 * Math.abs(sentimentValue)); // Уменьшаем яркость, чем меньше значение
         return String.format("#%02X%02X%02X", intensity, intensity, 255); // Синий оттенок
     }
-
 
 }
